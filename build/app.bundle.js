@@ -8720,38 +8720,397 @@ module.exports = function (it, key) {
 
 /***/ }),
 /* 308 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var greeting = 'Hello World';
-console.log(greeting);
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 
-var getData = function getData(url) {
-  var response, result;
-  return regeneratorRuntime.async(function getData$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          _context.next = 2;
-          return regeneratorRuntime.awrap(fetch(url));
+// CONCATENATED MODULE: ./src/http.js
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-        case 2:
-          response = _context.sent;
-          _context.next = 5;
-          return regeneratorRuntime.awrap(response.json());
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-        case 5:
-          result = _context.sent;
-          console.log(result);
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-        case 7:
-        case "end":
-          return _context.stop();
+/**
+ * EasyHTTP Library
+ * Library for making HTTP requests
+ *
+ * @version 3.0.0
+ * @author  Robbie Payne
+ * @license MIT
+ *
+ **/
+var EasyHTTP =
+/*#__PURE__*/
+function () {
+  function EasyHTTP() {
+    _classCallCheck(this, EasyHTTP);
+  }
+
+  _createClass(EasyHTTP, [{
+    key: "get",
+    // Make an HTTP GET Request 
+    value: function get(url) {
+      var response, resData;
+      return regeneratorRuntime.async(function get$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return regeneratorRuntime.awrap(fetch(url));
+
+            case 2:
+              response = _context.sent;
+              _context.next = 5;
+              return regeneratorRuntime.awrap(response.json());
+
+            case 5:
+              resData = _context.sent;
+              return _context.abrupt("return", resData);
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      });
+    } // Make an HTTP POST Request
+
+  }, {
+    key: "post",
+    value: function post(url, data) {
+      var response, resData;
+      return regeneratorRuntime.async(function post$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return regeneratorRuntime.awrap(fetch(url, {
+                method: 'POST',
+                headers: {
+                  'Content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+              }));
+
+            case 2:
+              response = _context2.sent;
+              _context2.next = 5;
+              return regeneratorRuntime.awrap(response.json());
+
+            case 5:
+              resData = _context2.sent;
+              return _context2.abrupt("return", resData);
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      });
+    } // Make an HTTP PUT Request
+
+  }, {
+    key: "put",
+    value: function put(url, data) {
+      var response, resData;
+      return regeneratorRuntime.async(function put$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return regeneratorRuntime.awrap(fetch(url, {
+                method: 'PUT',
+                headers: {
+                  'Content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+              }));
+
+            case 2:
+              response = _context3.sent;
+              _context3.next = 5;
+              return regeneratorRuntime.awrap(response.json());
+
+            case 5:
+              resData = _context3.sent;
+              return _context3.abrupt("return", resData);
+
+            case 7:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      });
+    } // Make an HTTP DELETE Request
+
+  }, {
+    key: "delete",
+    value: function _delete(url) {
+      var response, resData;
+      return regeneratorRuntime.async(function _delete$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return regeneratorRuntime.awrap(fetch(url, {
+                method: 'DELETE',
+                headers: {
+                  'Content-type': 'application/json'
+                }
+              }));
+
+            case 2:
+              response = _context4.sent;
+              _context4.next = 5;
+              return regeneratorRuntime.awrap('Resource Deleted...');
+
+            case 5:
+              resData = _context4.sent;
+              return _context4.abrupt("return", resData);
+
+            case 7:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      });
+    }
+  }]);
+
+  return EasyHTTP;
+}();
+
+var http = new EasyHTTP();
+// CONCATENATED MODULE: ./src/ui.js
+function ui_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function ui_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function ui_createClass(Constructor, protoProps, staticProps) { if (protoProps) ui_defineProperties(Constructor.prototype, protoProps); if (staticProps) ui_defineProperties(Constructor, staticProps); return Constructor; }
+
+var UI =
+/*#__PURE__*/
+function () {
+  function UI() {
+    ui_classCallCheck(this, UI);
+
+    this.post = document.querySelector('#posts');
+    this.titleInput = document.querySelector('#title');
+    this.bodyInput = document.querySelector('#body');
+    this.idInput = document.querySelector('#id');
+    this.postSubmit = document.querySelector('.post-submit');
+    this.forState = 'add';
+  } // Show all posts
+
+
+  ui_createClass(UI, [{
+    key: "showPosts",
+    value: function showPosts(posts) {
+      var output = '';
+      posts.forEach(function (post) {
+        output += "\n            <div class=\"card mb-3\">\n                <div class=\"card-body\">\n                    <h4 class=\"card-title\">".concat(post.title, "</h4>\n                    <p class=\"card-text\">").concat(post.body, "</p>\n                    <a href=\"#\" class=\"edit card-link\" data-id=\"").concat(post.id, "\">\n                        <i class=\"fa fa-pencil\"></i>\n                    </a>\n                    <a href=\"#\" class=\"delete card-link\" data-id=\"").concat(post.id, "\">\n                        <i class=\"fa fa-remove\"></i>\n                    </a>\n                </div>\n            </div>\n            ");
+      });
+      this.post.innerHTML = output;
+    } // Show alert message
+
+  }, {
+    key: "showAlert",
+    value: function showAlert(message, className) {
+      var _this = this;
+
+      this.clearAlert(); // Create div
+
+      var div = document.createElement('div'); // Add classes
+
+      div.className = className; // Add text
+
+      div.appendChild(document.createTextNode(message)); // Get parent
+
+      var container = document.querySelector('.postsContainer'); // Get posts
+
+      var posts = document.querySelector('#posts'); // Insert alert div
+
+      container.insertBefore(div, posts); // Timeout
+
+      setTimeout(function () {
+        _this.clearAlert();
+      }, 3000);
+    } // Clear alert message
+
+  }, {
+    key: "clearAlert",
+    value: function clearAlert() {
+      var currentAlert = document.querySelector('.alert');
+
+      if (currentAlert) {
+        currentAlert.remove();
+      }
+    } // Clear all fields
+
+  }, {
+    key: "clearFields",
+    value: function clearFields() {
+      this.titleInput.value = '';
+      this.bodyInput.value = '';
+    } // Fill form to edit
+
+  }, {
+    key: "fillForm",
+    value: function fillForm(data) {
+      this.titleInput.value = data.title;
+      this.bodyInput.value = data.body;
+      this.idInput.value = data.id;
+      this.changeFormState('edit');
+    } // Clear ID hidden value
+
+  }, {
+    key: "clearIdInput",
+    value: function clearIdInput() {
+      this.idInput.value = '';
+    } // Change form state
+
+  }, {
+    key: "changeFormState",
+    value: function changeFormState(type) {
+      if (type === 'edit') {
+        this.postSubmit.textContent = 'Update Post';
+        this.postSubmit.className = 'post-submit btn btn-warning btn-block'; // Create cancel button
+
+        var button = document.createElement('button');
+        button.className = 'post-cancel btn btn-light btn-block';
+        button.appendChild(document.createTextNode('Cancel Edit')); // Get parent
+
+        var cardForm = document.querySelector('.card-form'); // Get element to insert before
+
+        var formEnd = document.querySelector('.form-end'); // Insert cancel button
+
+        cardForm.insertBefore(button, formEnd);
+      } else {
+        this.postSubmit.textContent = 'Post It';
+        this.postSubmit.className = 'post-submit btn btn-primary btn-block'; // Remove cancel btn if it is there
+
+        if (document.querySelector('.post-cancel')) {
+          document.querySelector('.post-cancel').remove();
+        } // Clear ID from hidden field
+
+
+        this.clearIdInput(); // Clear text
+
+        this.clearFields();
       }
     }
-  });
-};
+  }]);
 
-getData('https://jsonplaceholder.typicode.com/posts');
+  return UI;
+}();
+
+var ui = new UI();
+// CONCATENATED MODULE: ./src/app.js
+
+ // Get posts on DOM load
+
+document.addEventListener('DOMContentLoaded', getPosts); //Listen for add post
+
+document.querySelector('.post-submit').addEventListener('click', submitPost); // Listen for delete
+
+document.querySelector('#posts').addEventListener('click', deletePost); // Listen for edit state
+
+document.querySelector('#posts').addEventListener('click', enableEdit); // Listen for cancel
+
+document.querySelector('.card-form').addEventListener('click', cancelEdit); // Get Posts
+
+function getPosts() {
+  http.get('http://localhost:3000/posts').then(function (data) {
+    return ui.showPosts(data);
+  })["catch"](function (err) {
+    return console.log(err);
+  });
+} // Submit Post
+
+
+function submitPost() {
+  var title = document.querySelector('#title').value;
+  var body = document.querySelector('#body').value;
+  var id = document.querySelector('#id').value;
+  var data = {
+    title: title,
+    body: body
+  }; // Validate input
+
+  if (title === '' || body === '') {
+    ui.showAlert('Please fill in all fields', 'alert alert-danger');
+  } else {
+    // Check for ID
+    if (id === '') {
+      // Create Post
+      http.post('http://localhost:3000/posts', data).then(function (data) {
+        ui.showAlert('Post added', 'alert alert-success');
+        ui.clearFields();
+        getPosts();
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    } else {
+      // Update post
+      http.put("http://localhost:3000/posts/".concat(id), data).then(function (data) {
+        ui.showAlert('Post updated', 'alert alert-success');
+        ui.changeFormState('add');
+        getPosts();
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    }
+  }
+} // Delete Post
+
+
+function deletePost(e) {
+  e.preventDefault();
+
+  if (e.target.parentElement.classList.contains('delete')) {
+    var id = e.target.parentElement.dataset.id;
+
+    if (confirm('Are you sure?')) {
+      http["delete"]("http://localhost:3000/posts/".concat(id)).then(function (data) {
+        ui.showAlert('Post Removed', 'alert alert-success');
+        getPosts();
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    }
+  }
+
+  e.preventDefault();
+} // Enable edit state 
+
+
+function enableEdit(e) {
+  if (e.target.parentElement.classList.contains('edit')) {
+    var id = e.target.parentElement.dataset.id;
+    var title = e.target.parentElement.previousElementSibling.previousElementSibling.textContent;
+    var body = e.target.parentElement.previousElementSibling.textContent;
+    var data = {
+      id: id,
+      title: title,
+      body: body
+    }; // Fill form with current post
+
+    ui.fillForm(data);
+  }
+
+  e.preventDefault();
+} // Cancel edit state
+
+
+function cancelEdit(e) {
+  if (e.target.classList.contains('post-cancel')) {
+    ui.changeFormState('add');
+  }
+
+  e.preventDefault();
+}
 
 /***/ })
 /******/ ]);
